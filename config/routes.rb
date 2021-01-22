@@ -14,10 +14,7 @@ Rails.application.routes.draw do
   namespace :api, default: { format: :json } do
     namespace :v1 do
       root :to =>"welcome#index"
-      resources :users do
-        resources :reviews, only: [:create, :new, :show]
-        resources :ride_requests, only: [:create, :new, :destroy]
-      end
+    
       resources :customers, only: [:index, :create, :new,:show, :update]
     
       resources :sessions, only: [:create, :show, :new]
@@ -25,6 +22,12 @@ Rails.application.routes.draw do
      
       # /api/v1/current_user
       get('/current_user', to: 'sessions#get_current_user')
+      get('/users/:user_id/reviews' , to:'reviews#show')
+      resources :users do
+        resources :reviews, only: [:create]
+       
+        resources :ride_requests, only: [:create, :new, :destroy]
+      end
     end
   end
 end
