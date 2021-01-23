@@ -6,16 +6,16 @@ class Api::V1::RideRequestsController < Api::ApplicationController
   end
 
   def create
-    customer = Customer.find params[:customer_id]
+    user = User.find params[:user_id]
     ride_request = RideRequest.new ride_request_params
     ride_request.user = user
     ride_request.customer = current_user
 
-    if review.save
-      render json: {id: review.id}
+    if ride_request.save
+      render json: {id: ride_request.id}
      else
        render(
-         json: { errors: review.errors },
+         json: { errors: ride_request.errors },
          status: 422 
        )
      end
