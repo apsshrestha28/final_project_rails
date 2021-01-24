@@ -21,6 +21,11 @@ class Api::V1::RideRequestsController < Api::ApplicationController
      end
   end
 
+  def show
+    @ride_request = RideRequest.where(user_id: params[:user_id])
+    render(json: @ride_request)
+  end
+
   def destroy
     @ride_request = RideRequest.find params[:id]
     @ride_request.destroy

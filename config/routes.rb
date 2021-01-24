@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       # /api/v1/current_user
       get('/current_user', to: 'sessions#get_current_user')
       get('/users/:user_id/reviews' , to:'reviews#show')
+      get('/users/:user_id/ride_requests' , to:'ride_requests#show')
       resources :users do
         resources :reviews, only: [:create]
        
