@@ -23,10 +23,13 @@ Rails.application.routes.draw do
       # /api/v1/current_user
       get('/current_user', to: 'sessions#get_current_user')
       get('/users/:user_id/reviews' , to:'reviews#show')
+      
       get('/users/:user_id/ride_requests' , to:'ride_requests#show')
+      patch('/ride_requests/:id', to:'ride_requests#update')
+      get('/ride_requests' , to:'ride_requests#index')
+
       resources :users do
-        resources :reviews, only: [:create]
-       
+        resources :reviews, only: [:create] 
         resources :ride_requests, only: [:create, :new, :destroy]
       end
     end

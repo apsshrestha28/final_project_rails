@@ -32,6 +32,17 @@ class Api::V1::RideRequestsController < Api::ApplicationController
     render(json: { status: 200 }, status: 200)
   end
 
+  def update
+    @ride_request = RideRequest.find params[:id]
+     if @ride_request.update params.require(:ride_request).permit(:status)
+      render json: {id: @ride_request.id}
+    else
+      render(
+      json:{ errors: @user.errors},
+      status: 422)
+    end     
+  end
+
   private
   def ride_request_params
     params.require(:ride_request).permit(:status, :ride_date, :ride_time)
