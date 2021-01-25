@@ -50,6 +50,6 @@ class Api::V1::CustomersController < Api::ApplicationController
   def customer_params
     params.permit(
       :first_name, :last_name, :email, :password, :password_confirmation, 
-    :address , :latitude, :longitude, :phone_number)
+    :address , :destination_address, :latitude, :longitude, :phone_number)
   end
 end
