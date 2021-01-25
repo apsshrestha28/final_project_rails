@@ -1,6 +1,5 @@
 class Api::V1::ReviewsController < Api::ApplicationController
-  
-  
+   
   def create
     user= User.find params[:user_id]
     review = Review.new params.require(:review).permit(:body,:rating,:user_id)
@@ -17,7 +16,7 @@ class Api::V1::ReviewsController < Api::ApplicationController
     end
   end
   def show
-    @review = Review.where(user_id: params[:user_id])
+    @review = Review.where(user_id: params[:user_id]).order(created_at: :desc)
     render(json: @review)
   end
   def destroy
