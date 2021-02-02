@@ -22,7 +22,7 @@ class Api::V1::RideRequestsController < Api::ApplicationController
   end
 
   def show
-    @ride_request = RideRequest.where(user_id: params[:user_id])
+    @ride_request = RideRequest.where(user_id: params[:user_id]).order(created_at: :desc)
     render(json: @ride_request)
   end
 
