@@ -38,7 +38,7 @@
 yarn-debug.log*
 .yarn-integrity
 .browserslistrc
-*.lock
+yarn.lock
 log/*
 tmp/*
 vendor/*
