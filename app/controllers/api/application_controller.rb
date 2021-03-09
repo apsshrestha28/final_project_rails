@@ -1,11 +1,5 @@
 class Api::ApplicationController < ApplicationController
   skip_before_action :verify_authenticity_token
-  private
-
-  def user_signed_in?
-    current_user.present?
-  end
-  helper_method :user_signed_in?
 
   def current_user
     puts "print session userid"
