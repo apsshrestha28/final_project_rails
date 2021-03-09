@@ -4,6 +4,8 @@ class Api::V1::SessionsController < Api::ApplicationController
         if @user 
             if @user && @user.authenticate(params[:password])
               session[:user_id] = @user.id
+              puts "print session id"
+              puts session[:user_id]
               render json: { id: @user.id }
             else
               render(
@@ -16,6 +18,8 @@ class Api::V1::SessionsController < Api::ApplicationController
           if @customer
               if @customer && @customer.authenticate(params[:password])
                 session[:customer_id] = @customer.id
+                puts "print customer session id"
+                puts session[:customer_id]
                 render json: { id: @customer.id }
               else
                 render(
