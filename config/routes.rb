@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     
       resources :customers, only: [:index, :create, :new,:show, :update]
     
-      resources :sessions, only: [:create, :show, :new]
-      delete('/sign_out', to: 'sessions#destroy')  
+      resources :sessions, only: [:create, :show, :new , :destroy]
+     
       get('/current_user', to: 'sessions#get_current_user')
 
       get('/users/:user_id/reviews' , to:'reviews#show')
