@@ -38,6 +38,7 @@ class Api::V1::SessionsController < Api::ApplicationController
 
   def destroy
     if session[:user_id]
+      cookie.delete(:user_id)
       session[:user_id] = nil
       render(
         json: { logged_out: true },
@@ -45,6 +46,7 @@ class Api::V1::SessionsController < Api::ApplicationController
       )
     end
     if session[:customer_id]
+      cookie.delete(:customer_id)
       session[:customer_id] = nil
       render(
         json: { logged_out: true },
