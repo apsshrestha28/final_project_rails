@@ -37,17 +37,7 @@ class Api::V1::SessionsController < Api::ApplicationController
   end
 
   def destroy
-    if session[:user_id]
-      cookie.delete(:user_id)
-      session[:user_id] = nil
-      render(
-        json: { logged_out: true },
-        status: 200
-      )
-    end
-    if session[:customer_id]
-      cookie.delete(:customer_id)
-      session[:customer_id] = nil
+      cookies.delete cookie, :domain => "https://young-shore-98752.herokuapp.com"
       render(
         json: { logged_out: true },
         status: 200
