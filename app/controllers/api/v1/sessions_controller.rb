@@ -34,14 +34,14 @@ class Api::V1::SessionsController < Api::ApplicationController
 
   def destroy
     if session[:user_id]
-      session.delete(:user_id)
+      session.clear
       render(
         json: { logged_out: true },
         status: 200
       )
     end
     if session[:customer_id]
-      session.delete(:customer_id)
+      session.clear
       render(
         json: { logged_out: true },
         status: 200
