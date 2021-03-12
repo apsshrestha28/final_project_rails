@@ -33,20 +33,8 @@ class Api::V1::SessionsController < Api::ApplicationController
   end
 
   def destroy
-    if session[:user_id]
-      session.clear
-      render(
-        json: { logged_out: true },
-        status: 200
-      )
-    end
-    if session[:customer_id]
-      session.clear
-      render(
-        json: { logged_out: true },
-        status: 200
-      )
-    end
+    current_user.invalidate_all_sessions!
+    super
   end
 
   def get_current_user
